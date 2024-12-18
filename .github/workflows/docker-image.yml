@@ -26,4 +26,4 @@ jobs:
       run: docker build ./backend --file ./backend/Dockerfile --tag minhhieuhuynh/medicine-sales-website-backend:latest
 
     - name: Push the Backend Docker image
-      run: docker push minhhieuhuynh/medicine-sales-website-bacakend:latest
+      run: docker push minhhieuhuynh/medicine-sales-website-backend:latest
