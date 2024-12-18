@@ -1,0 +1,29 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+    - name: Build the Frontend Docker image
+      run: docker build ./frontend --file Dockerfile --tag minhhieuhuynh/medicine-sales-website-frontend:latest
+
+    - name: Push the Frontend Docker image
+      run: docker push minhhieuhuynh/medicine-sales-website-frontend:latest
+
+    - name: Build the Backend Docker image
+      run: docker build ./backend --file Dockerfile --tag minhhieuhuynh/medicine-sales-website-backend:latest
+
+    - name: Push the Backend Docker image
+      run: docker push minhhieuhuynh/medicine-sales-website-bacakend:latest
