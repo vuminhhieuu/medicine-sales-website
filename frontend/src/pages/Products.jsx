@@ -20,6 +20,8 @@ import {
   deselectProduct,
   deleteProduct,
   searchProducts,
+  importProducts,
+  exportProducts,
 } from "../store/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -90,6 +92,17 @@ const Products = () => {
         dispatch(deleteMultipleInvoices(selectedProducts));
       }
     };
+
+    const handleImport = (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        dispatch(importProducts(file));
+      }
+    };
+  
+    const handleExport = () => {
+      dispatch(exportProducts());
+    };
   // Filter products based on selected category and search query
   
   const filteredProducts = products.filter((product) => {
@@ -121,7 +134,7 @@ const Products = () => {
                 onClick={() => dispatch(setSelectedCategory(category.name))}
                 className={`px-4 py-1 rounded-md ${
                   selectedCategory === category.name
-                    ? "bg-blue-500 text-white"
+                    ? "bg-gradient-to-r from-[#6CBCFD] to-[#468EFD] text-white"
                     : "bg-gray-200 text-gray-600"
                 }`}
               >
@@ -134,7 +147,7 @@ const Products = () => {
               <button
                 onClick={() => dispatch(setViewMode("grid"))}
                 className={`p-2 rounded-md ${
-                  viewMode === "grid" ? "bg-blue-500 text-white" : "bg-gray-200"
+                  viewMode === "grid" ? "bg-gradient-to-r from-[#6CBCFD] to-[#468EFD] text-white" : "bg-gray-200"
                 }`}
               >
                 <IoGridOutline />
@@ -142,7 +155,7 @@ const Products = () => {
               <button
                 onClick={() => dispatch(setViewMode("list"))}
                 className={`p-2 rounded-md ${
-                  viewMode === "list" ? "bg-blue-500 text-white" : "bg-gray-200"
+                  viewMode === "list" ? "bg-gradient-to-r from-[#6CBCFD] to-[#468EFD] text-white" : "bg-gray-200"
                 }`}
               >
                 <FaList />
@@ -171,7 +184,7 @@ const Products = () => {
                     );
                   }
                 }}
-                className="px-4 py-1 rounded-md bg-blue-500 text-white flex items-center"
+                className="px-4 py-1 rounded-md bg-gradient-to-r from-[#6CBCFD] to-[#468EFD] text-white flex items-center"
               >
                 <input
                   type="checkbox"
@@ -205,12 +218,28 @@ const Products = () => {
             )}
           </div>
         </div>
+        <div className="flex justify-between items-center mb-4">
+        <div>
+          <input
+            type="file"
+            accept=".xlsx, .xls"
+            onChange={handleImport}
+            className="mr-2 p-2 border rounded"
+          />
+          <button
+            onClick={handleExport}
+            className="p-2 bg-blue-500 text-white rounded"
+          >
+            Xuất sản phẩm
+          </button>
+        </div>
         <div>
           <SearchBar
             placeholder="Tìm kiếm sản phẩm..."
             onSearch={handleSearch}
           />
         </div>
+      </div>
       </div>
 
       <hr className="mb-2" />

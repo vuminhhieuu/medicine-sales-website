@@ -32,7 +32,7 @@ const Sidebar = () => {
     e.preventDefault();
     try {
       Cookies.remove("access_token");
-      window.location.href = Paths.LOGIN;
+      navigate(Paths.LOGIN);
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -49,7 +49,7 @@ const Sidebar = () => {
           <img
             src="/images/transparent_logo.svg"
             alt="Logo"
-            className="h-30 w-50"
+            className="w-44"
           />
         </button>
 
