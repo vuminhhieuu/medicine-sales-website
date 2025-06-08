@@ -18,6 +18,9 @@ Với mong muốn giải quyết các hạn chế đó, nhóm lựa chọn đề
 
 ## Demo (đang bổ sung)
 
+## Tài nguyên
+- [UX/UI Design](https://www.figma.com/design/5bTAhfGoYGlyjHtlz8eNKu/UI-design---VitalCare-website?node-id=3-412&p=f)
+
 ## Cấu trúc thư mục
 
 ```
